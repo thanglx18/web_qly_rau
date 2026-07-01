@@ -1,0 +1,36 @@
+# =========================
+# PHP / web project ignore rules
+# =========================
+
+# Environment and local config
+.env
+.env.*
+!.env.example
+
+# IDE and OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Logs and caches
+*.log
+cache/
+tmp/
+coverage/
+
+# Composer / PHP dependencies
+vendor/
+composer.phar
+
+# Local uploads and generated files
+uploads/
+public/uploads/
+
+# Optional: ignore database dumps or local DB files
+*.sql
+*.sqlite
+*.sqlite3
