@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BOX */
+.register-box {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.register-box h2 {
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+.register-box input,
+.register-box select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* BUTTON */
+.register-box button {
+    width: 100%;
+    padding: 10px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-box button:hover {
+    background: #1e8449;
+}
+
+/* LINK */
+.register-box a {
+    text-decoration: none;
+    color: #3498db;
+}
+
+/* MESSAGE */
+.error {
+    margin-top: 10px;
+    color: green;
+}

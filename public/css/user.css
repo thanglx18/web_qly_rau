@@ -1,0 +1,14 @@
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.role-admin { background: rgba(155, 89, 182, 0.1); color: #9b59b6; border: 1px solid #9b59b6; }
+.role-staff { background: rgba(52, 152, 219, 0.1); color: #3498db; border: 1px solid #3498db; }
+
+.status-active { color: #2ecc71; }
+.status-locked { color: #e74c3c; }
+
+.username-text { font-family: 'Courier New', Courier, monospace; font-weight: 700; color: var(--primary); }

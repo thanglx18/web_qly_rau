@@ -1,0 +1,107 @@
+/* Màu sắc chủ đạo và nền (Đã đồng bộ với FARMI ADMIN) */
+:root {
+    --primary-mint: #5eead4; /* Màu xanh mint từ ảnh của bạn */
+    --dark-bg: #0f1717;
+    --card-bg: #1a1f1f;
+    --text-gray: #94a3b8;
+}
+
+/* Container chính */
+.main-content {
+    background-color: var(--dark-bg);
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+}
+
+/* Badge cho tên danh mục (Bo góc và có nền mờ) */
+.category-badge {
+    background: rgba(94, 234, 212, 0.1);
+    color: var(--primary-mint);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid rgba(94, 234, 212, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Style cho bảng danh mục */
+.custom-table {
+    width: 100%;
+    border-spacing: 0 10px; /* Tạo khoảng cách giữa các hàng nếu cần */
+    border-collapse: separate;
+}
+
+.custom-table thead th {
+    color: var(--text-gray);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.custom-table tbody tr {
+    background: var(--card-bg);
+    transition: all 0.3s ease;
+}
+
+.custom-table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Các nút Edit/Delete (Dạng icon vuông nhỏ như trong ảnh) */
+.btn-edit-table, .btn-delete-table {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px;
+    transition: 0.2s;
+}
+
+.btn-edit-table {
+    background: #fef3c7; /* Màu vàng nhạt cho nút sửa */
+    color: #d97706;
+}
+
+.btn-delete-table {
+    background: #fee2e2; /* Màu đỏ nhạt cho nút xóa */
+    color: #dc2626;
+}
+
+.btn-edit-table:hover, .btn-delete-table:hover {
+    transform: scale(1.1);
+}
+
+/* Modal cho danh mục */
+.modal-content {
+    background: #1e2929;
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Textarea mô tả */
+textarea#mo_ta {
+    background: #161b1b;
+    border: 1px solid #2d3737;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    resize: none;
+    width: 100%;
+}
+
+textarea#mo_ta:focus {
+    border-color: var(--primary-mint);
+    outline: none;
+}
