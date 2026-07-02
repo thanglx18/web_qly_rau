@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# 1. Nếu yêu cầu là file thực hoặc thư mục thực thì không làm gì cả
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# 2. Chỉ đẩy tất cả yêu cầu về index.php nếu nó không phải là index.php
+# Dòng này giúp ngăn chặn vòng lặp chuyển hướng vô hạn
+RewriteRule ^ index.php [QSA,L]
