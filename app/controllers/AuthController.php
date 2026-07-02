@@ -2,33 +2,38 @@
 require_once __DIR__ . '/../core/Database.php';
 require_once __DIR__ . '/../models/User.php';
 
-class AuthController {
+class AuthController
+{
     private $db;
     private $userModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database();
         $this->db = $database->getConnection();
         $this->userModel = new User($this->db);
     }
 
-    public function login() {
+    public function login()
+    {
         // Nếu đã đăng nhập thì về dashboard luôn
         if (isset($_SESSION['user'])) {
             $redirect = $_SESSION['user']['role'] === 'admin' ? 'home' : 'pos';
             header('Location: /hi/public/index.php?url=' . $redirect);
             exit;
         }
-        
+
         $path = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'login.php';
         require_once $path;
     }
 
-    public function process() {
+    public function process()
+    {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
         if (empty($username) || empty($password)) {
+            header('Content-Type: application/json; charset=utf-8');
             echo json_encode(["status" => "error", "message" => "Vui lòng nhập đủ thông tin!"]);
             exit;
         }
@@ -57,17 +62,22 @@ class AuthController {
             }
 
             $redirect = $user['vai_tro'] === 'admin' ? 'home' : 'pos';
+            header('Content-Type: application/json; charset=utf-8');
             echo json_encode([
-                "status" => "success", 
+                "status" => "success",
                 "message" => "Đăng nhập thành công!",
                 "redirect" => $redirect
             ]);
+            exit;
         } else {
+            header('Content-Type: application/json; charset=utf-8');
             echo json_encode(["status" => "error", "message" => "Tài khoản hoặc mật khẩu không chính xác!"]);
+            exit;
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         session_destroy();
         header('Location: /hi/public/index.php?url=login');
         exit;

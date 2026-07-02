@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,12 @@
             --border: #232d28;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
         body {
             background-color: var(--bg-dark);
@@ -36,7 +42,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 10;
         }
@@ -44,7 +50,10 @@
         .login-container::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
             background: linear-gradient(135deg, var(--primary), #3498db);
             border-radius: 22px;
             z-index: -1;
@@ -128,7 +137,10 @@
             cursor: pointer;
         }
 
-        .remember input { margin-right: 8px; accent-color: var(--primary); }
+        .remember input {
+            margin-right: 8px;
+            accent-color: var(--primary);
+        }
 
         .btn-login {
             width: 100%;
@@ -153,7 +165,9 @@
             filter: brightness(1.1);
         }
 
-        .btn-login:active { transform: translateY(0); }
+        .btn-login:active {
+            transform: translateY(0);
+        }
 
         .alert {
             padding: 12px;
@@ -197,6 +211,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-container">
@@ -249,7 +264,7 @@
 
         loginForm.onsubmit = async (e) => {
             e.preventDefault();
-            
+
             // UI Feedback
             loginBtn.disabled = true;
             loginBtn.innerHTML = '<span>ĐANG XÁC THỰC...</span> <i class="fas fa-spinner fa-spin"></i>';
@@ -261,9 +276,17 @@
                     method: 'POST',
                     body: formData
                 });
-                
-                const result = await response.json();
-                
+
+                // Ensure we only parse JSON. If server returns HTML (e.g., error page), show it.
+                const contentType = response.headers.get('content-type') || '';
+                let result;
+                if (contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    const text = await response.text();
+                    throw new Error('Server returned non-JSON response: ' + (text.slice(0, 300) || text));
+                }
+
                 if (result.status === 'success') {
                     loginAlert.className = 'alert' + (result.status === 'success' ? '' : ' alert-error');
                     loginAlert.innerText = result.message;
@@ -271,7 +294,7 @@
                     loginAlert.style.background = 'rgba(82, 221, 181, 0.15)';
                     loginAlert.style.color = 'var(--primary)';
                     loginAlert.style.borderColor = 'rgba(82, 221, 181, 0.3)';
-                    
+
                     setTimeout(() => {
                         window.location.href = '/hi/public/index.php?url=' + (result.redirect || 'home');
                     }, 800);
@@ -293,11 +316,12 @@
         togglePassword.onclick = function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
+
             // Toggle icon
             this.classList.toggle('fa-eye');
             this.classList.toggle('fa-eye-slash');
         };
     </script>
 </body>
+
 </html>
